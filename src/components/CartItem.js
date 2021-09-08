@@ -8,14 +8,17 @@ function CartItem({item}) {
     const dispatch = useDispatch()
     return (
         <div>
-            <div className="cartItem" key={item.payload.name}>
+            <div className="cartItem">
                 <h1>{item.payload.name}</h1>
                 <h2>Rs {item.payload.price}</h2>
+                <h3>{item.payload.count}</h3>
 
-                <button onClick={ () => dispatch(incrementProductCount(item.payload)) } >+</button>
+                {/* <button >+</button>
                 <span>{item.payload.count}</span>
-                <button onClick={ () => dispatch(decrementProductCount(item.payload))}>-</button>
+                <button>-</button> */}
             </div>
+
+            
         </div>
     )
 }
