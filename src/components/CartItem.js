@@ -6,7 +6,7 @@ import "./cart.css"
 import { updateCartItems } from '../actions'
 
 
-function CartItem({ item, itemSubtotal, checkWhichproduct , savings}) {
+function CartItem({ item, itemSubtotal, checkWhichproduct, savings }) {
 
     const dispatch = useDispatch()
 
@@ -55,8 +55,10 @@ function CartItem({ item, itemSubtotal, checkWhichproduct , savings}) {
                         <h2>{item.name}</h2>
                     </div>
 
-                    {item.price} * {item.count} =
-                    {itemSubtotal[item.name]}
+                    <div>
+                        Rs. {item.price} * {item.count} =
+                        {itemSubtotal[item.name]}
+                    </div>
 
                 </div>
 
@@ -71,7 +73,7 @@ function CartItem({ item, itemSubtotal, checkWhichproduct , savings}) {
 
 
 
-                    <div>You saved: { savings[`${item.name}Saving`] }</div>
+                    <div>You saved: {savings[`${item.name}Saving`]}</div>
                     {/* can implement a conditional rendering if the saving is 0. */}
 
                 </div>
