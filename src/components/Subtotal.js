@@ -1,35 +1,27 @@
-import react from "react";
 
-const Subtotal = ({ cartItems }) => {
-    let pricesArray = []
-    let idArray = []
+const Subtotal = ({ itemSubtotal, savings }) => {
+    let totalSum = 0;
+    let totalSavings = 0;
 
-    let totalSum = 0
+    let pricesArray = Object.values(itemSubtotal)
+    let savingsArray = Object.values(savings)
 
-    cartItems.map((item)=>{
-        if(!idArray.includes(item.payload.id)){
-            pricesArray.push(item.payload.price)
-            idArray.push(item.payload.id)
-        }
+    pricesArray.map((price)=>{
+        totalSum = totalSum + price
     })
 
-    // const totalSum = pricesArray.reduce(function (total, price) {
-    //     return total + price;
-    // }, 0);
-
-
-    cartItems.map((item)=>{
-        totalSum = totalSum + (item.payload.price * item.payload.count)
+    savingsArray.map((price)=>{
+        totalSavings = totalSavings + price
     })
 
-
+    let subtotal = totalSavings+totalSum
     return (
-        <div>
+        <div className="subtotal_wrapper">
+        <h4>Sub total: {subtotal}</h4>
+            <h3>discount: {totalSavings}</h3>
             <h1>Total: {totalSum}</h1>
         </div>
     )
 }
-
-//only thing remains is adding discount thingy
 
 export default Subtotal;

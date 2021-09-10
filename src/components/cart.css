@@ -1,0 +1,40 @@
+
+.cart{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+
+.cart_div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartItem{
+    border: 1px black solid;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 20rem;
+}
+
+.cartItem h2{
+    text-transform: capitalize;
+}
+
+.itemQty{
+    display: flex;
+    align-items: center;
+}
+.itemQty button{
+    margin: 0.2rem;
+}
+.subtotal_wrapper{
+    background-color: greenyellow;
+    padding: 0.5rem;
+}

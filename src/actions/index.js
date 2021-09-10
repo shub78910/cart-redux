@@ -1,23 +1,12 @@
-export const addItem = (item)=>{
+export const updateCartItems = (item)=>{
     return {
-        type:"ADDITEM",
-        payload:item
+        type:"UPDATEITEM",
+        payload:item.payload
     }
 }
 
-export const incrementProductCount = (item)=>{
+export const emptyCart = (item)=>{
     return {
-        type:"INCREMENTPRODUCTCOUNT",
-        payload:item
+        type:"EMPTYCART"
     }
 }
-
-export const decrementProductCount = (item)=>{
-    return {
-        type:"DECREMENTPRODUCTCOUNT",
-        payload:item
-    }
-}
-
-
-

@@ -1,50 +1,31 @@
 let initialState = [];
 
-const productReducer = (state = initialState, action) => {
-
-    let newCountObj
-
-    switch (action.type) {
-        case "ADDITEM":
+const productReducer = (state=initialState, action)=>{
+    switch(action.type){
+        case "UPDATEITEM":
             let newCart = [...state]
-            let existingItem = newCart.find((item)=>item.payload.id==action.payload.id);
-
-            console.log(existingItem);
+            let flag = false
+            newCart.map((item)=>{
+                if(item.id === action.payload.id){
+                    item.count = action.payload.count
+                    flag=true
+                }
+            })
             
-            return [...state, action.payload]
+            //to check if its already in the cart and therefore increase the count.
+            if(flag){
+                return [...newCart]
+            }
 
-        // case "INCREMENTPRODUCTCOUNT":
-        //     newCountObj = [...state]
-        //     newCountObj.map((item) => {
-        //         if (item.payload.name == action.payload.name) {
-        //             item.payload.count = item.payload.count + 1
-        //         }
-        //     })
+            //return a new array with a new product.
+            else if( !action.payload.count==0 ){
+                return [...state, action.payload]
+            }
 
-        //     if( !newCountObj.includes(newCountObj[action.payload.id-1]) ){
-        //         newCountObj.push(newCountObj[action.payload.id-1])
-        //     } 
-
-        // return [ ...newCountObj ] 
-
-        // case "DECREMENTPRODUCTCOUNT":
-        //     newCountObj = [...state]
-        //     newCountObj.map((item) => {
-        //         if (item.payload.name == action.payload.name) {
-        //             if(! item.payload.count==0){
-        //                 item.payload.count = item.payload.count - 1
-        //             }    
-        //         }
-        //     })
-
-        //     if( !newCountObj.includes(newCountObj[action.payload.id-1]) ){
-        //         newCountObj.push(newCountObj[action.payload.id-1])
-        //     } 
-
-        // return [ ...newCountObj ]
-
+        case "EMPTYCART":
+            return []    
         default:
-            return state
+            return state   
     }
 }
 
