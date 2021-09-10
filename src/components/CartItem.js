@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux";
 
 import "./cart.css"
-import { updateCartItems } from '../actions'
+import { updateCartItems, removeItem } from '../actions'
 
 
 function CartItem({ item, itemSubtotal, checkWhichproduct, savings }) {
@@ -20,11 +20,28 @@ function CartItem({ item, itemSubtotal, checkWhichproduct, savings }) {
         updateCart();
     }
     const removeProduct = () => {
-        setUpdatedQty(Number(updatedQty) - 1)
-        updateCart();
+        let reducedQty = Number(updatedQty) - 1
+
+        if (reducedQty == -1) {
+            removeProductFromCart(item.id)
+            console.log("cannot have negative quantity.")
+            setUpdatedQty(0);
+        } else {
+            setUpdatedQty(reducedQty)
+            updateCart();
+        }
+
     }
 
-
+const removeProductFromCart = (id) =>{
+    
+    dispatch(removeItem({
+        type: "REMOVEITEM",
+        payload: {
+            id: item.id,
+        }
+    }))
+}
     const updateCart = () => {
 
         dispatch(updateCartItems({

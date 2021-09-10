@@ -53,6 +53,7 @@ function Cart() {
 
     //checks the prod and calculates its subtotal accordingly.
     const checkWhichproduct = (item) => {
+        
         if (item.name == "cheese") {
             let cheeseSubtotal = item.price * Math.ceil(item.count / 2)
             let cheeseSaving = ((item.count * item.price) - cheeseSubtotal)
