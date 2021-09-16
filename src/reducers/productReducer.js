@@ -2,40 +2,52 @@ let initialState = [];
 
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "UPDATEITEM":
-            let newCart = [...state]
-            let flag = false
-            newCart.map((item) => {
+        case "ADD_ITEM":
+            let cartToAddItem = [...state];
+            let flag = false;
+
+            cartToAddItem.map((item) => {
                 if (item.id === action.payload.id) {
-                    item.count = action.payload.count
-                    flag = true
+                    item.count = Number(item.count) + 1;
+                    flag = true;
                 }
-            })
+            });
 
-            //to check if its already in the cart and therefore increase the count.
             if (flag) {
-                return [...newCart]
+                return [...cartToAddItem];
+            } else {
+                return [...state, action.payload];
             }
 
-            //return a new array with a new product.
-            else if (!action.payload.count == 0) {
-                return [...state, action.payload]
-            }
-
-        case "REMOVEITEM":
-            console.log("in remove id: ", action.payload.id);
-
-            let itemToBeRemoved = state.filter( (item)=>item.id == action.payload.id )
-            
+        case "REMOVE_ITEM":
             //removing the object with id same as the payload id.
-            state.splice(state.findIndex(a => a.id === itemToBeRemoved[0].id) , 1)
-            return [...state]   
+
+            let cartToRemoveItem = [...state];
+
+            cartToRemoveItem.map((item) => {
+                if (item.id === action.payload.id) {
+                    if (item.count == 1) {
+                        let indexToDelete = state.findIndex(
+                            (a) => a.id === action.payload.id
+                        );
+
+                        cartToRemoveItem = cartToRemoveItem.filter(
+                            (item, index) => index !== indexToDelete
+                        );
+                    } else {
+                        item.count = Number(item.count) - 1;
+                    }
+                }
+            });
+
+            return [...cartToRemoveItem];
 
         case "EMPTYCART":
-            return []
+            return [];
+
         default:
-            return state
+            return state;
     }
-}
+};
 
 export default productReducer;

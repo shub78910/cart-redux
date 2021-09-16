@@ -1,19 +1,19 @@
-export const updateCartItems = (item)=>{
+export const addItemToCart = (item) => {
     return {
-        type:"UPDATEITEM",
-        payload:item.payload
-    }
-}
+        type: "ADD_ITEM",
+        payload: item.payload,
+    };
+};
 
-export const removeItem = (item)=>{
+export const removeItem = (item) => {
     return {
-        type:"REMOVEITEM",
-        payload:item.payload
-    }
-}
+        type: "REMOVE_ITEM",
+        payload: item.payload,
+    };
+};
 
-export const emptyCart = (item)=>{
+export const emptyCart = (item) => {
     return {
-        type:"EMPTYCART"
-    }
-}
+        type: "EMPTYCART",
+    };
+};
